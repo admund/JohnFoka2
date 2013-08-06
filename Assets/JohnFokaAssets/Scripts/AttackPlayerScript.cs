@@ -2,9 +2,13 @@
 using System.Collections;
 
 public class AttackPlayerScript : MonoBehaviour {
-	//public float 
+	private float shotDelay = 0.3f;
+	private float lastShotTime = 0;
+	
 	public Transform fireBall;
 	public Transform fireBall2;
+	
+	public GameObject zombie;
 	
 	// Use this for initialization
 	void Start () {
@@ -15,11 +19,17 @@ public class AttackPlayerScript : MonoBehaviour {
 	void Update () {
 		
 		if(Input.GetMouseButton(0)) {
-			Instantiate(fireBall, transform.position, Quaternion.identity);
+			if(Time.time - lastShotTime > shotDelay) {
+				Instantiate(fireBall, transform.position, Quaternion.identity);
+				lastShotTime = Time.time;
+			}
 		}
 		
 		if(Input.GetMouseButton(1)) {
 			Instantiate(fireBall2, transform.position, Quaternion.identity);
 		}
+		
+		if(Input.GetKeyDown(KeyCode.Z))
+			GameObject.Instantiate(zombie);
 	}
 }

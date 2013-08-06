@@ -30,4 +30,6 @@ public class PlayerMoveScript : MonoBehaviour {
 		
 		controller.Move(moveDirection * Time.deltaTime);
 	}
+	
+	//private Vector3 corractPos
 }

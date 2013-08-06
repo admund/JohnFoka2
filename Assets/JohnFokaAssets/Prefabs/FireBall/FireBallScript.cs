@@ -4,7 +4,8 @@ using System.Collections;
 public class FireBallScript : MonoBehaviour {
 	private static int cnt = 0;
 	private Vector3 moveDirection;
-	public float speed = 50f;
+	
+	private float speed = 20f;
 		
 	// Use this for initialization
 	void Start () {
@@ -22,8 +23,13 @@ public class FireBallScript : MonoBehaviour {
 		if(transform.position.x > 100f || transform.position.y > 100f ||
 			transform.position.x < -100f || transform.position.y < -100f) {
 			cnt--;
-			Debug.Log("Destroy " + cnt);
 			GameObject.Destroy(gameObject);
 		}
 	}
+	
+	void OnCollisionEnter(Collision collision) {
+		if(collision.gameObject.tag != "Player") {
+			Destroy(gameObject);
+		}
+    }
 }
